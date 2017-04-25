@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.BorderLayout;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,9 +58,27 @@ public class BBApp {
             } else if (choice.equals("rating")) {
                 Collections.sort(list);
             } else if (choice.equals("search")) {
-                ;
+                String name = Validator.getLine(sc, "Name of friend: ");
+                Friend match = null;
+                for(Friend f : list) {
+                    if(f.getName().equalsIgnoreCase(name)) {
+                        match = f;
+                        break;
+                    }
+                }
+                if(match != null) {
+                    System.out.println("Match found: " + match.toString());
+                } else {
+                    System.out.println("Match not found!");
+                }
             } else if (choice.equals("range")) {
-                ;
+                int low = Validator.getInt(sc, "Enter low end rating: ");
+                int high = Validator.getInt(sc, "Enter high end rating: ");
+                for(Friend f : list) {
+                    if(f.getRating() >= low && f.getRating() <= high) {
+                        System.out.println(f.toString());
+                    }
+                }
             }
         }
     }
