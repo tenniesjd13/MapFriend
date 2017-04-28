@@ -43,15 +43,19 @@ public class BBApp {
             choice = Validator.getLine(sc, "Enter your choice: ", regex);
             if (choice.equalsIgnoreCase("quit")) {
                 break;
+                
             } else if (choice.equals("add")) {
                 String name = Validator.getLine(sc, "Enter friend's name: ");
                 int rating = Validator.getInt(sc, "Enter rating: ");
                 map.put(name, new Friend(name, rating));
+                
             } else if (choice.equals("remove")) {
                 String name = Validator.getLine(sc, "Enter name to remove: ");
                 map.remove(name);
+                
             } else if (choice.equals("list")) {
                 System.out.println(map);
+                
             } else if (choice.equals("name")) {
                 // TreeMap works well to sort by the key
                 Map<String, Friend> m = new TreeMap(map);
@@ -85,13 +89,13 @@ public class BBApp {
                     System.out.println(name + " not found!");
                 }
             } else if (choice.equals("range")) {
-//                int low = Validator.getInt(sc, "Enter low end rating: ");
-//                int high = Validator.getInt(sc, "Enter high end rating: ");
-//                for (Friend f : map) {
-//                    if (f.getRating() >= low && f.getRating() <= high) {
-//                        System.out.println(f.toString());
-//                    }
-//                }
+                int low = Validator.getInt(sc, "Enter low end rating: ");
+                int high = Validator.getInt(sc, "Enter high end rating: ");
+                for (Friend f : map.values()) {
+                    if (f.getRating() >= low && f.getRating() <= high) {
+                        System.out.println(f.toString());
+                    }
+                }
             }
         }
     }
